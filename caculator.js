@@ -15,7 +15,7 @@ class Caculator{
         this.clear()
     }
 append_Number(number){
-    
+    if (number==="."&& this.current_Operand.includes(".")) return 
     this.current_Operand = this.current_Operand.toString()+number.toString()
     // console.log(this.current_Operand);
 }
@@ -59,13 +59,13 @@ compute(){
 }
 clear(){
     this.previous_Operand=""
-    this.current_Operand=""
+    this.current_Operand=0
     this.operation=undefined
 }
 update_Display(){
     console.log(this.current_Operand, this.previous_Operand);
     this.current_Operand_Element.innerText    =this.current_Operand
-    // this.previous_Operand_Element.innerHTML   =this.previous_Operand
+     this.previous_Operand_Element.innerHTML   =this.previous_Operand
 }
 }
 const caculator=new Caculator(previous_Operand,current_Operand)
@@ -85,3 +85,11 @@ operationbtn.forEach(element => {
         caculator.update_Display()
     })
 });
+equalsbtn.addEventListener("click", ()=>{
+    caculator.compute()
+    caculator.update_Display()
+})
+allclearbtn.addEventListener('click',()=>{
+    caculator.clear()
+    caculator.update_Display()
+})
